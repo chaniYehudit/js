@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="./StoreManagement.js"></script>
+    <link rel="stylesheet" href="../node_modules/mdb-ui-kit/css/mdb.rtl.min.css" />
+    <link rel="stylesheet" href="../node_modules/mdb-ui-kit/css/mdb.min.css.map" />
+    <link rel="stylesheet" href="../node_modules/mdb-ui-kit/css/mdb.min.css" />
+    <link rel="stylesheet" href="../node_modules/mdb-ui-kit/css/mdb.rtl.min.css.map" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <template id="allProducts">
+
+        <tr>
+            <td class="name"></td>
+            <td class="code"></td>
+            <td class="category"></td>
+            <td class="price"></td>
+            <td class="amount"></td>
+            <td>
+                <button class="delete">DELETE</button>
+            </td>
+            <td>
+                <button class="edit">EDIT</button>
+            </td>
+            <td>
+                <button class="addToStock">AddToStock</button>
+                <button class="lessFromStock">LessFromStock</button>
+            </td>
+        </tr>
+    </template>
+
+    <title>Document</title>
+</head>
+
+<body onload="getAllProducts()">
+    <div>
+        <label> search by name</label>
+        <br>
+        <input type="text" placeholder="Search" onchange="byProductName()" id="search-name" />
+        <button onclick="byProductName()">חיפוש</button><br />
+        <br>
+        <label>search by price</label>
+        <br>
+        <input type="number" id="range1-price" value="0" max="49" />
+        <input type="number" id="range2-price" value="50" min="50" />
+        <button onclick="byProductPrice()">חיפוש</button><br />
+        <label> search by category</label>
+        <br>
+        <select id="searchByCategory">
+            <option>a</option>
+            <option>b</option>
+            <option>c</option>
+            <option>d</option>
+        </select>
+        <br>
+        <button id="btn" onclick="byProductCategory()">Get Selected category</button>
+        <br>
+        <button id="btn" onclick="outOfStock()">outOfStock</button>
+        <button id="btn" onclick="closeToOutOfStock()">closeToOutOfStock</button>
+        <br>
+        <!-- <label>שם מוצר</label>
+        <input type="text" id="name2" /><br />
+        <button onclick="addStock()">הוספה למלאי</button>
+        <button onclick="reduceStock()">הפחתה מהמלאי</button>
+        <button onclick="removeProduct()">מחיקת פריט</button> -->
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">name</th>
+                <th scope="col">code</th>
+                <th scope="col">category</th>
+                <th scope="col">price</th>
+                <th scope="col">stock</th>
+                <th scope="col">delete </th>
+                <th scope="col">edit</th>
+                <th scope="col">edit stock</th>
+            </tr>
+        </thead>
+        <tbody id="tbody">
+        </tbody>
+    </table>
+
+
+    <button id="new" onclick="newProduct()">הוספת מוצר</button>
+    <div style="display:none" id="newProduct">
+        <h4>למוצר חדש:</h4>
+        <label>שם מוצר</label>
+        <input type="text" id="name" /><br />
+        <label>קוד</label>
+        <input type="text" id="code" /><br />
+        <label>קטגוריה</label>
+        <select id="category">
+            <option>a</option>
+            <option>b</option>
+            <option>c</option>
+            <option>d</option>
+        </select>
+        <br>
+        <label>מחיר</label>
+        <input type="text" id="price" /><br />
+        <button onclick="addProduct()">הוספה</button>
+</div>
+
+<div style="display:none" id="editProduct">
+    <h4>עידכון מוצר:</h4>
+    <label>שם מוצר</label>
+    <input type="text" id="name" /><br />
+    <label>קוד</label>
+    <input type="text" id="code" /><br />
+    <label>קטגוריה</label>
+    <select id="category">
+        <option>a</option>
+        <option>b</option>
+        <option>c</option>
+        <option>d</option>
+    </select>
+    <br>
+    <label>מחיר</label>
+    <input type="text" id="price" /><br />
+    <button id="update" onclick="updateProduct()">לעידכון</button>
+</div>
+</body>
+
+</html>
